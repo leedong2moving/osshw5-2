@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../../styles/DetailPage.css';
@@ -8,11 +8,7 @@ const DetailPage = () => {
   const [student, setStudent] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchStudent();
-  }, [fetchStudent]);
-
-  const fetchStudent = async () => {
+  const fetchStudent = useCallback(async () => {
     try {
       const response = await axios.get(`https://672b298a976a834dd025df28.mockapi.io/students/${id}`);
       setStudent(response.data);
@@ -20,7 +16,11 @@ const DetailPage = () => {
       console.error('Error fetching student details:', error);
       alert('Invalid student ID provided.');
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    fetchStudent();
+  }, [fetchStudent]);
 
   return (
     <div className="container">
@@ -46,5 +46,3 @@ const DetailPage = () => {
 };
 
 export default DetailPage;
-
-
