@@ -1,0 +1,39 @@
+.form-container {
+    background: linear-gradient(145deg, #ffffff, #eeeeee);
+    padding: 20px;
+    border-radius: 15px;
+    width: 400px;
+    max-width: 90%;
+    margin: auto;
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.5);
+  }
+  
+  .form-container input,
+  .form-container select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.2s;
+  }
+  
+  .form-container input:focus,
+  .form-container select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  .btn-primary {
+    background: linear-gradient(120deg, #007bff, #0056b3);
+    color: #fff;
+    border: none;
+    width: 100%;
+  }
+  
+  .btn-primary:hover {
+    background: linear-gradient(120deg, #0056b3, #004085);
+  }
+  

@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
-import '../../styles/updatePage.css';
+import { useNavigate } from 'react-router-dom';
+import '../../styles/createPage.css';
 
-const UpdatePage = () => {
-  const { id } = useParams();
+const CreatePage = () => {
   const [formData, setFormData] = useState({
     stuid: '',
     name: '',
@@ -12,64 +11,66 @@ const UpdatePage = () => {
     gender: '',
     major: '',
   });
+
   const navigate = useNavigate();
-  const [editCount, setEditCount] = useState(0);
+  const nameRef = useRef();
+  const ageRef = useRef();
 
-  useEffect(() => {
-    fetchStudent();
-  }, [id]);
-
-  const fetchStudent = async () => {
-    try {
-      const response = await axios.get(`https://672b298a976a834dd025df28.mockapi.io/students/${id}`);
-      setFormData(response.data);
-    } catch (error) {
-      console.error('Error fetching student details:', error);
-    }
-  };
-
-  const handleChange = async (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
-    setEditCount((prevCount) => prevCount + 1);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.name) {
+      nameRef.current.focus();
+      alert('Name is required');
+      return;
+    }
+    if (!formData.age) {
+      ageRef.current.focus();
+      alert('Age is required');
+      return;
+    }
 
     try {
-      await axios.put(`https://672b298a976a834dd025df28.mockapi.io/students/${id}`, {
-        ...formData,
-        [name]: value,
-      });
+      await axios.post('https://672b298a976a834dd025df28.mockapi.io/students', formData);
+      navigate('/list');
     } catch (error) {
-      console.error('Error updating student:', error);
+      console.error('Error creating student:', error);
     }
   };
 
   return (
     <div className="container">
-      <h1 className="heading">Edit Student</h1>
-      <form className="form-container">
+      <h1 className="heading">Add New Student</h1>
+      <form onSubmit={handleSubmit} className="form-container">
         <input
           type="text"
           name="stuid"
+          placeholder="Student ID"
           value={formData.stuid}
           onChange={handleChange}
           className="form-control"
-          placeholder="Student ID"
         />
         <input
           type="text"
           name="name"
+          placeholder="Name"
           value={formData.name}
           onChange={handleChange}
+          ref={nameRef}
           className="form-control"
-          placeholder="Name"
         />
         <input
           type="number"
           name="age"
+          placeholder="Age"
           value={formData.age}
           onChange={handleChange}
+          ref={ageRef}
           className="form-control"
-          placeholder="Age"
         />
         <select
           name="gender"
@@ -94,14 +95,14 @@ const UpdatePage = () => {
           <option value="Law">Law</option>
           <option value="Economy">Economy</option>
         </select>
+        <button type="submit" className="btn btn-primary">
+          Save
+        </button>
       </form>
-      <div className="edit-count">Edit count: {editCount}</div>
-      <button className="btn btn-secondary" onClick={() => navigate('/list')}>
-        Back to List
-      </button>
     </div>
   );
 };
 
-export default UpdatePage;
+export default CreatePage;
+
 

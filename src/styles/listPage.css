@@ -1,0 +1,128 @@
+body {
+  background: linear-gradient(135deg, #f0f4ff, #c2e9fb);
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  color: #333333;
+  overflow-x: hidden;
+}
+
+.heading {
+  text-align: center;
+  font-size: 3rem;
+  color: #333333;
+  margin: 30px 0;
+  text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: inline-block;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.btn-success {
+  display: block;
+  margin: 30px auto 20px;
+  padding: 15px 30px;
+  font-weight: bold;
+  border-radius: 25px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(120deg, #28a745, #218838);
+}
+
+.btn-success:hover {
+  background: linear-gradient(120deg, #218838, #1e7e34);
+  transform: scale(1.05);
+}
+
+.student-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.student-card {
+  background: #ffffff;
+  color: #333333;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 300px;
+  text-align: center;
+}
+
+.student-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.student-name {
+  font-size: 1.75rem;
+  color: #e52e71;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.student-name:hover {
+  color: #ff8a00;
+}
+
+.student-age {
+  margin: 10px 0;
+  font-size: 1.25rem;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+}
+
+.btn-primary,
+.btn-danger {
+  padding: 10px 20px;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 120px; 
+  height: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.btn-primary {
+  background: linear-gradient(120deg, #007bff, #0056b3);
+  color: #fff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(120deg, #0056b3, #004085);
+  transform: scale(1.05);
+}
+
+.btn-danger {
+  background: linear-gradient(120deg, #dc3545, #c82333);
+  color: #fff;
+  border: none;
+}
+
+.btn-danger:hover {
+  background: linear-gradient(120deg, #c82333, #bd2130);
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

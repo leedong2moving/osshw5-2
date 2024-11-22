@@ -1,37 +1,22 @@
 import React from 'react';
+import '../styles/studentCard.css';
 
 const StudentCard = ({ student, onEdit, onDelete }) => {
-  const handleEditClick = () => {
-    if (onEdit && typeof onEdit === 'function') {
-      onEdit(student);
-    }
-  };
-
-  const handleDeleteClick = () => {
-    if (window.confirm('Are you sure you want to delete this student?')) {
-      if (onDelete && typeof onDelete === 'function') {
-        onDelete(student.id);
-      }
-    }
-  };
-
   return (
-    <div className="col">
-      <div className="card text-center">
-        <div className="card-body">
-          <h5 className="card-title">{student.name || 'No Name'}</h5>
-          <p>Student ID: {student.stuid || 'N/A'}</p>
-          <p>Age: {student.age || 'N/A'}</p>
-          <p>Gender: {student.gender || 'N/A'}</p>
-          <p>Major: {student.major || 'N/A'}</p>
-          <div className="d-flex justify-content-center gap-2">
-            <button className="btn btn-primary" onClick={handleEditClick}>
-              Edit
-            </button>
-            <button className="btn btn-danger" onClick={handleDeleteClick}>
-              Delete
-            </button>
-          </div>
+    <div className="card">
+      <div className="card-body">
+        <h5 className="card-title">{student.name || 'No Name'}</h5>
+        <p className="card-details">Student ID: {student.stuid || 'N/A'}</p>
+        <p className="card-details">Age: {student.age || 'N/A'}</p>
+        <p className="card-details">Gender: {student.gender || 'N/A'}</p>
+        <p className="card-details">Major: {student.major || 'N/A'}</p>
+        <div className="btn-container">
+          <button className="btn btn-edit" onClick={() => onEdit(student)}>
+            Edit
+          </button>
+          <button className="btn btn-delete" onClick={() => onDelete(student.id)}>
+            Delete
+          </button>
         </div>
       </div>
     </div>

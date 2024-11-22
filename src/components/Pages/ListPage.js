@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import StudentCard from '../StudentCard'; // 올바른 경로로 수정
-import StudentFormModal from '../StudentFormModal'; // 올바른 경로로 수정
+import { useNavigate } from 'react-router-dom';
+import '../../styles/listPage.css';
+import '../../styles/navbar.css';
 
 const ListPage = () => {
   const [students, setStudents] = useState([]);
-  const [selectedStudent, setSelectedStudent] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchStudents();
@@ -21,65 +21,45 @@ const ListPage = () => {
     }
   };
 
-  const handleSave = async (student) => {
-    try {
-      if (student.id) {
-        await axios.put(`https://672b298a976a834dd025df28.mockapi.io/students/${student.id}`, student);
-      } else {
-        await axios.post('https://672b298a976a834dd025df28.mockapi.io/students', student);
-      }
-      fetchStudents();
-      closeModal();
-    } catch (error) {
-      console.error('Error saving student:', error);
-    }
-  };
-
-  const handleDelete = async (id) => {
-    if (window.confirm('Are you sure you want to delete this student?')) {
-      try {
-        await axios.delete(`https://672b298a976a834dd025df28.mockapi.io/students/${id}`);
-        fetchStudents();
-      } catch (error) {
-        console.error('Error deleting student:', error);
-      }
-    }
-  };
-
-  const openModal = (student = null) => {
-    setSelectedStudent(student);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setSelectedStudent(null);
-    setIsModalOpen(false);
-  };
-
   return (
     <div className="container">
+      {/* 네비게이션 바 추가 */}
+      <nav className="navbar">
+        <div className="navbar-container">
+          <a href="#" className="navbar-logo">Student Management</a>
+          <ul className="navbar-menu">
+            <li className="navbar-item">
+              <a href="#" className="navbar-link">Home</a>
+            </li>
+            <li className="navbar-item">
+              <a href="#" className="navbar-link" onClick={() => navigate('/create')}>Add Student</a>
+            </li>
+            <li className="navbar-item">
+              <a href="#" className="navbar-link" onClick={() => navigate('/list')}>Student List</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
       <h1 className="heading">Student List</h1>
-      <button className="btn btn-success mb-4" onClick={() => openModal({})}>
-        Add New Student
-      </button>
-      <div className="row g-4">
+      <div className="student-list">
         {students.map((student) => (
-          <div key={student.id} className="col-12 col-md-6 col-lg-4">
-            <StudentCard
-              student={student}
-              onEdit={() => openModal(student)}
-              onDelete={handleDelete}
-            />
+          <div key={student.id} className="student-card">
+            <h3 className="student-name" onClick={() => navigate(`/detail/${student.id}`)}>
+              {student.name}
+            </h3>
+            <p className="student-age">Age: {student.age}</p>
+            <div className="button-group">
+              <button className="btn btn-primary small-button" onClick={() => navigate(`/update/${student.id}`)}>
+                Edit
+              </button>
+              <button className="btn btn-danger small-button" onClick={() => navigate(`/delete/${student.id}`)}>
+                Delete
+              </button>
+            </div>
           </div>
         ))}
       </div>
-      {isModalOpen && (
-        <StudentFormModal
-          student={selectedStudent}
-          onSave={handleSave}
-          onClose={closeModal}
-        />
-      )}
     </div>
   );
 };
