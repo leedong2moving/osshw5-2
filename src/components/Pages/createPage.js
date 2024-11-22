@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../../styles/createPage.css';
+import '../../styles/CreatePage.css';
 
 const CreatePage = () => {
   const [formData, setFormData] = useState({

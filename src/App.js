@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ListPage from './components/Pages/listPage';
-import CreatePage from './components/Pages/createPage';
-import DetailPage from './components/Pages/detailPage';
-import UpdatePage from './components/Pages/updatePage';
+import ListPage from './components/Pages/ListPage';
+import CreatePage from './components/Pages/CreatePage';
+import DetailPage from './components/Pages/DetailPage';
+import UpdatePage from './components/Pages/UpdatePage';
 import './styles/index.css';
 
 const App = () => {

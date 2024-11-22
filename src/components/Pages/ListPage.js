@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../../styles/listPage.css';
-import '../../styles/navbar.css';
+import '../../styles/ListPage.css';
+import '../../styles/NavBar.css';
 
 const ListPage = () => {
   const [students, setStudents] = useState([]);

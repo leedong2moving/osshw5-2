@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/studentCard.css';
+import '../styles/StudentCard.css';
 
 const StudentCard = ({ student, onEdit, onDelete }) => {
   return (
