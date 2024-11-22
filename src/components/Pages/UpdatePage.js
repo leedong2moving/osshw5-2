@@ -17,7 +17,7 @@ const UpdatePage = () => {
 
   useEffect(() => {
     fetchStudent();
-  }, [id]);
+  }, [fetchStudent]);
 
   const fetchStudent = async () => {
     try {

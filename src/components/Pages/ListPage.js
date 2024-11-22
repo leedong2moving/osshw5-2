@@ -23,7 +23,7 @@ const ListPage = () => {
 
   return (
     <div className="container">
-      {/* 네비게이션 바 추가 */}
+      {}
       <nav className="navbar">
         <div className="navbar-container">
           <a href="#" className="navbar-logo">Student Management</a>
@@ -32,10 +32,10 @@ const ListPage = () => {
               <a href="#" className="navbar-link">Home</a>
             </li>
             <li className="navbar-item">
-              <a href="#" className="navbar-link" onClick={() => navigate('/create')}>Add Student</a>
+              <button className="navbar-link" onClick={() => navigate('/create')}>Add Student</button>
             </li>
             <li className="navbar-item">
-              <a href="#" className="navbar-link" onClick={() => navigate('/list')}>Student List</a>
+              <button className="navbar-link" onClick={() => navigate('/list')}>Student List</button>
             </li>
           </ul>
         </div>
