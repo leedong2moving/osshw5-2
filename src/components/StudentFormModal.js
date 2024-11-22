@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../styles/StudentFormModal.css"; // styles 폴더로 변경된 CSS 파일 경로
+import "../styles/StudentFormModal.css"; 
 
 const StudentFormModal = ({ student, onSave, onClose }) => {
   const [formData, setFormData] = useState({
